@@ -44,8 +44,9 @@
           <div class="area">
             <h4 class="text-center area-margin">LINE Web Login Success Page</h4>
             <div class="center-block area-margin">
-              <div th:value="${mid}"></div>
-              <div>Success</div>
+              <p>ログイン成功！</p>
+              <p th:text="${token.mid}"></p>
+              <p th:text="${token.expires_in}"></p>
             </div>
           </div>
         </div>

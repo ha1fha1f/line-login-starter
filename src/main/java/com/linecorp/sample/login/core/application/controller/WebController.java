@@ -95,7 +95,7 @@ public class WebController {
         httpSession.setAttribute(ACCESS_TOKEN, token);
 
         ModelAndView mav = new ModelAndView("user/success");
-        mav.addObject("mid", token.mid);
+        mav.addObject("token", token);
 
         return mav;
     }
