@@ -47,7 +47,8 @@
               <p>プロフィール</p>
               <p th:text="${profile.displayName}"></p>
               <p th:text="${profile.mid}"></p>
-              <p th:text="${profile.picture}"></p>
+              <p th:text="${profile.pictureUrl}"></p>
+              <img th:src="${profile.pictureUrl}/small">
               <p th:text="${profile.statusMessage}"></p>
             </div>
           </div>

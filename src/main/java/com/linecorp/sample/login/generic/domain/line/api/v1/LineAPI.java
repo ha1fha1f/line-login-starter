@@ -47,6 +47,6 @@ public interface LineAPI {
             @Field("code") String code);
 
     @GET("v1/profile")
-    Call<Profile> profile(@Header("Authorization") String token);
+    Call<Profile> profile(@Header("Authorization") String code);
 
 }

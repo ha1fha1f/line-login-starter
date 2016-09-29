@@ -23,13 +23,13 @@ public final class Profile {
 
     public final String displayName;
     public final String mid;
-    public final String picture;
+    public final String pictureUrl;
     public final String statusMessage;
 
-    public Profile(String displayName, String mid, String picture, String statusMessage) {
+    public Profile(String displayName, String mid, String pictureUrl, String statusMessage) {
         this.displayName = displayName;
         this.mid = mid;
-        this.picture = picture;
+        this.pictureUrl = pictureUrl;
         this.statusMessage = statusMessage;
     }
 
