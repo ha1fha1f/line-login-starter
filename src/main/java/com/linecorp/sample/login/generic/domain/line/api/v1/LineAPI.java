@@ -46,8 +46,6 @@ public interface LineAPI {
             @Field("redirect_uri") String redirect_uri,
             @Field("code") String code);
 
-    @Headers("Content-Type: application/x-www-form-urlencoded")
-    @FormUrlEncoded
     @GET("v1/profile")
     Call<Profile> profile(@Header("Authorization") String token);
 
