@@ -16,12 +16,15 @@
 package com.linecorp.sample.login.generic.domain.line.api.v1;
 
 import com.linecorp.sample.login.generic.domain.line.api.v1.response.AccessToken;
+import com.linecorp.sample.login.generic.domain.line.api.v1.response.Profile;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 
 /**
  * <p>LINE v1 API interface</p>
@@ -42,5 +45,10 @@ public interface LineAPI {
             @Field("client_secret") String client_secret,
             @Field("redirect_uri") String redirect_uri,
             @Field("code") String code);
+
+    @Headers("Content-Type: application/x-www-form-urlencoded")
+    @FormUrlEncoded
+    @GET("v1/profile")
+    Call<Profile> profile(@Header("Authorization") String token);
 
 }

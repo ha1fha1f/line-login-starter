@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 import com.linecorp.sample.login.generic.domain.line.LineConfig;
 import com.linecorp.sample.login.generic.domain.line.api.v1.response.AccessToken;
+import com.linecorp.sample.login.generic.domain.line.api.v1.response.Profile;
 import com.linecorp.sample.login.infra.http.Client;
 
 import retrofit2.Call;
@@ -47,6 +48,10 @@ public class LineAPIService {
                 lineConfig.getChannelSecret(),
                 lineConfig.getEncodedRedirectUrl(),
                 code));
+    }
+
+    public Profile profile(String type, String token) {
+        return getClient(t -> t.profile(type + " " + token));
     }
 
     private <R> R getClient(final Function<LineAPI, Call<R>> function) {

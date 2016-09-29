@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.linecorp.sample.login.generic.domain.line.LineConfig;
 import com.linecorp.sample.login.generic.domain.line.api.v1.LineAPIService;
 import com.linecorp.sample.login.generic.domain.line.api.v1.response.AccessToken;
+import com.linecorp.sample.login.generic.domain.line.api.v1.response.Profile;
 import com.linecorp.sample.login.infra.utils.CommonUtils;
 
 /**
@@ -60,11 +61,15 @@ public class WebController {
     }
 
     @RequestMapping("/profile")
-    public String profile(HttpSession httpSession) {
-        if (httpSession.getAttribute(ACCESS_TOKEN) == null) {
-            return "user/login";
+    public ModelAndView profile(HttpSession httpSession) {
+        AccessToken token = (AccessToken) httpSession.getAttribute(ACCESS_TOKEN);
+        if (token == null) {
+            return new ModelAndView("user/login");
         } else {
-            return "user/profile";
+            Profile profile = lineAPIService.profile("Bearer", token.access_token);
+            ModelAndView mav = new ModelAndView("user/profile");
+            mav.addObject("profile", profile);
+            return mav;
         }
     }
 
