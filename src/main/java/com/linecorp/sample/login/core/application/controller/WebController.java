@@ -51,8 +51,21 @@ public class WebController {
      * https://developers.line.me/web-login/overview#login_flow_type_web
      */
     @RequestMapping("/")
-    public String login() {
-        return "user/login";
+    public String login(HttpSession httpSession) {
+        if (httpSession.getAttribute(ACCESS_TOKEN) == null) {
+            return "user/login";
+        } else {
+            return "redirect:" + "profile";
+        }
+    }
+
+    @RequestMapping("/profile")
+    public String profile(HttpSession httpSession) {
+        if (httpSession.getAttribute(ACCESS_TOKEN) == null) {
+            return "user/login";
+        } else {
+            return "user/profile";
+        }
     }
 
     /**

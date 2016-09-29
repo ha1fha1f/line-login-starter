@@ -44,4 +44,3 @@ public interface LineAPI {
             @Field("code") String code);
 
 }
-
