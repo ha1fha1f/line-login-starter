@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.linecorp.sample.login.generic.domain.line.LineConfig;
 import com.linecorp.sample.login.generic.domain.line.api.v1.LineAPIService;
@@ -71,7 +72,7 @@ public class WebController {
      * https://developers.line.me/web-login/integrating-web-login#redirect_to_web_site
      */
     @RequestMapping("/auth")
-    public String auth(
+    public ModelAndView auth(
             HttpSession httpSession,
             @RequestParam(value = "state") String state,
             @RequestParam(value = "code") String code) {
@@ -93,6 +94,9 @@ public class WebController {
 
         httpSession.setAttribute(ACCESS_TOKEN, token);
 
-        return "user/success";
+        ModelAndView mav = new ModelAndView("user/success");
+        mav.addObject("mid", token.mid);
+
+        return mav;
     }
 }
